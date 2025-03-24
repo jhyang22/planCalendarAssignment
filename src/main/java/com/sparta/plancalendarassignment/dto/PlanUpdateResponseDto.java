@@ -8,21 +8,18 @@ import java.time.LocalDateTime;
 
 @Getter
 @AllArgsConstructor
-public class PlanResponseDto {
+public class PlanUpdateResponseDto {
     private Long planId;
     private String userId;
     private String title;
     private String contents;
     private LocalDateTime updatedAt;
-    private LocalDateTime createdAt;
 
-    public PlanResponseDto(Plan plan) {
+    public PlanUpdateResponseDto(Plan plan) {
         this.planId = plan.getPlanId();
         this.userId = plan.getUserId();
         this.title = plan.getTitle();
         this.contents = plan.getContents();
         this.updatedAt = plan.getUpdatedAt();
-        this.createdAt = plan.getCreatedAt();
     }
-
 }

@@ -8,21 +8,22 @@ import java.time.LocalDateTime;
 
 @Getter
 @AllArgsConstructor
-public class PlanResponseDto {
+public class PlanCreateResponseDto {
     private Long planId;
-    private String userId;
     private String title;
     private String contents;
-    private LocalDateTime updatedAt;
     private LocalDateTime createdAt;
 
-    public PlanResponseDto(Plan plan) {
+    public PlanCreateResponseDto(Plan plan) {
         this.planId = plan.getPlanId();
-        this.userId = plan.getUserId();
         this.title = plan.getTitle();
         this.contents = plan.getContents();
-        this.updatedAt = plan.getUpdatedAt();
         this.createdAt = plan.getCreatedAt();
     }
 
+
 }
+// dto는 데이터를 보정하는 작업을 하면 안됨
+// 전달만 하는 목적
+
+// put을 안해서
