@@ -75,5 +75,4 @@ public class PlanServiceImpl implements PlanService {
         planRepository.deletePlan(planId);
     }
 
-
 }

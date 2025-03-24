@@ -11,7 +11,5 @@ public class PlanRequestDto {
     private String title;
     private String contents;
     private LocalDateTime createdAt;
-
-
 }
 

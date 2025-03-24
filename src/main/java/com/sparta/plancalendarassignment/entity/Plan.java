@@ -26,6 +26,7 @@ public class Plan {
         this.userId = userId;
         this.password = password;
         this.createdAt = LocalDateTime.now();
+        this.updatedAt = setupdatedAt();
     }
 
     public void updatePlan(PlanRequestDto dto) {
@@ -34,9 +35,10 @@ public class Plan {
         this.updatedAt = LocalDateTime.now();
     }
 
-    public void updatePartOfPlan(PlanRequestDto dto) {
-        this.userId = dto.getUserId();
-        this.contents = dto.getContents();
-        this.updatedAt = LocalDateTime.now();
+    private LocalDateTime setupdatedAt() {
+        if(updatedAt == null) {
+            return createdAt;
+        }
+        return LocalDateTime.now();
     }
 }
