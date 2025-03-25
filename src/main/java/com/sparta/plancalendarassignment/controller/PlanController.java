@@ -5,6 +5,7 @@ import com.sparta.plancalendarassignment.dto.PlanRequestDto;
 import com.sparta.plancalendarassignment.dto.PlanResponseDto;
 import com.sparta.plancalendarassignment.dto.PlanUpdateResponseDto;
 import com.sparta.plancalendarassignment.service.PlanService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,7 +24,7 @@ public class PlanController {
 
     // 일정 생성
     @PostMapping
-    public ResponseEntity<PlanCreateResponseDto> createPlan(@RequestBody PlanRequestDto dto) {
+    public ResponseEntity<PlanCreateResponseDto> createPlan(@Valid @RequestBody PlanRequestDto dto) {
 
         return new ResponseEntity<>(planService.savePlan(dto), HttpStatus.CREATED);
     }
@@ -46,7 +47,7 @@ public class PlanController {
     @PatchMapping("/{planId}")
     public ResponseEntity<PlanUpdateResponseDto> updatePlan(
             @PathVariable Long planId,
-            @RequestBody PlanRequestDto dto
+            @Valid @RequestBody PlanRequestDto dto
     ) {
         return new ResponseEntity<>(planService.updatePlan(planId, dto), HttpStatus.OK);
     }
@@ -55,7 +56,7 @@ public class PlanController {
     @DeleteMapping("/{planId}")
     public ResponseEntity<Void> deletePlan(
             @PathVariable Long planId,
-            @RequestBody PlanRequestDto dto
+            @Valid @RequestBody PlanRequestDto dto
     ) {
          planService.deletePlan(planId, dto);
 
