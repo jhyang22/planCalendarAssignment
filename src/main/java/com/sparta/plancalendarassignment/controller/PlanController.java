@@ -53,8 +53,11 @@ public class PlanController {
 
     // 일정 삭제
     @DeleteMapping("/{planId}")
-    public ResponseEntity<Void> deletePlan(@PathVariable Long planId) {
-         planService.deletePlan(planId);
+    public ResponseEntity<Void> deletePlan(
+            @PathVariable Long planId,
+            @RequestBody PlanRequestDto dto
+    ) {
+         planService.deletePlan(planId, dto);
 
          return new ResponseEntity<>(HttpStatus.OK);
     }

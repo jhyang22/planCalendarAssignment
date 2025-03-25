@@ -17,5 +17,5 @@ public interface PlanService {
 
     PlanUpdateResponseDto updatePlan(Long planId, PlanRequestDto dto);
 
-    void deletePlan(Long planId);
+    void deletePlan(Long planId, PlanRequestDto dto);
 }

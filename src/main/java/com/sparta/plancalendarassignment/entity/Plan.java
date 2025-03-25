@@ -33,15 +33,10 @@ public class Plan {
         this.userId = userId;
         this.title = title;
         this.contents = contents;
-        this.updatedAt = updatedAt;
         this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
     }
 
-    public void updatePlan(PlanRequestDto dto) {
-        this.title = dto.getTitle();
-        this.contents = dto.getContents();
-        this.updatedAt = LocalDateTime.now();
-    }
 
     private LocalDateTime setupdatedAt() {
         if(updatedAt == null) {

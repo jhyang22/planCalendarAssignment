@@ -20,10 +20,4 @@ public class PlanCreateResponseDto {
         this.contents = plan.getContents();
         this.createdAt = plan.getCreatedAt();
     }
-
-
 }
-// dto는 데이터를 보정하는 작업을 하면 안됨
-// 전달만 하는 목적
-
-// put을 안해서

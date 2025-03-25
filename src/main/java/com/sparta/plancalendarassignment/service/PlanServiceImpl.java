@@ -8,10 +8,11 @@ import com.sparta.plancalendarassignment.entity.Plan;
 import com.sparta.plancalendarassignment.repository.PlanRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class PlanServiceImpl implements PlanService {
@@ -38,40 +39,51 @@ public class PlanServiceImpl implements PlanService {
     @Override
     public PlanResponseDto findPlanById(Long planId) {
 
-        Optional<Plan> OptionalPlan = planRepository.findPlanById(planId);
+        Plan plan = planRepository.findPlanByIdOrElseThrow(planId);
 
-        if (OptionalPlan == null) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
-        }
-
-        return new PlanResponseDto(OptionalPlan.get());
+        return new PlanResponseDto(plan);
     }
 
+    @Transactional
     @Override
     public PlanUpdateResponseDto updatePlan(Long planId, PlanRequestDto dto) {
 
-        Plan plan = planRepository.findPlanById(planId);
-
-        if (plan == null) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
-        }
-
-        if (dto.getTitle() == null || dto.getContents() == null) {
+        if (dto.getUserId() == null || dto.getContents() == null) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
 
+        int updateRow = planRepository.updatePlan(planId, dto.getUserId(), dto.getContents(), LocalDateTime.now());
+
+        if (updateRow == 0) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+
+        //null이거나 비었으면 => orElseThrow()하겠다~
+        Plan plan = planRepository.findPlanByIdOrElseThrow(planId);
+
         if (dto.getPassword().equals(plan.getPassword())) {
-            plan.updatePlan(dto);
+            return new PlanUpdateResponseDto(plan);
+        } else {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @Override
+    public void deletePlan(Long planId, PlanRequestDto dto) {
+
+        Plan plan = planRepository.findPlanByIdOrElseThrow(planId);
+
+        if (dto.getPassword().equals(plan.getPassword())) {
+            int deletedRow = planRepository.deletePlan(planId);
+
+            if (deletedRow == 0) {
+                throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+            }
         } else {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
 
-        return new PlanUpdateResponseDto(plan);
     }
 
-    @Override
-    public void deletePlan(Long planId) {
-        planRepository.deletePlan(planId);
-    }
 
 }
