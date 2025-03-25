@@ -14,10 +14,4 @@ public class PlanCreateResponseDto {
     private String contents;
     private LocalDateTime createdAt;
 
-    public PlanCreateResponseDto(Plan plan) {
-        this.planId = plan.getPlanId();
-        this.title = plan.getTitle();
-        this.contents = plan.getContents();
-        this.createdAt = plan.getCreatedAt();
-    }
 }

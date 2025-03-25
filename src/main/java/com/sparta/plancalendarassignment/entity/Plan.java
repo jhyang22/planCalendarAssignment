@@ -27,16 +27,6 @@ public class Plan {
         this.updatedAt = setupdatedAt();
     }
 
-    public Plan(Long planId, String userId, String title, String contents, LocalDateTime updatedAt, LocalDateTime createdAt) {
-        this.planId = planId;
-        this.userId = userId;
-        this.title = title;
-        this.contents = contents;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
-    }
-
-
     private LocalDateTime setupdatedAt() {
         if(updatedAt == null) {
             return createdAt;

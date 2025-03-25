@@ -6,14 +6,11 @@ import com.sparta.plancalendarassignment.entity.Plan;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
 
 public interface PlanRepository {
     PlanCreateResponseDto savePlan(Plan plan);
 
     List<PlanResponseDto> findAllPlans();
-
-    Optional<Plan> findPlanById(Long planId);
 
     int updatePlan(Long planId, String userId, String contents, LocalDateTime updatedAt);
 

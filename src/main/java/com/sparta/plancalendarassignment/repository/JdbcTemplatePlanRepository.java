@@ -50,13 +50,6 @@ public class JdbcTemplatePlanRepository implements PlanRepository{
     }
 
     @Override
-    public Optional<Plan> findPlanById(Long planId) {
-        List<Plan> result = jdbcTemplate.query("SELECT * FROM plans WHERE plan_id = ?", planRowMapperV2(), planId);
-
-        return result.stream().findAny();
-    }
-
-    @Override
     public int updatePlan(Long planId, String userId, String contents, LocalDateTime updatedAt) {
         return jdbcTemplate.update("UPDATE plans SET user_id = ?, contents = ?, updated_at = ? WHERE plan_id = ?", userId, contents, updatedAt, planId);
     }
