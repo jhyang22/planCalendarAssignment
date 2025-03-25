@@ -1,10 +1,9 @@
 package com.sparta.plancalendarassignment.entity;
 
 
-import com.sparta.plancalendarassignment.dto.PlanRequestDto;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.Setter;
 
 import java.time.LocalDateTime;
 

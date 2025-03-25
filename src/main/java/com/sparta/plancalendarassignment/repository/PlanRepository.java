@@ -15,7 +15,7 @@ public interface PlanRepository {
 
     Optional<Plan> findPlanById(Long planId);
 
-    public int updatePlan(Long planId, String userId, String contents, LocalDateTime updatedAt);
+    int updatePlan(Long planId, String userId, String contents, LocalDateTime updatedAt);
 
     int deletePlan(Long planId);
 

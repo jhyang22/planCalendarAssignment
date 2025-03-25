@@ -1,10 +1,10 @@
 package com.sparta.plancalendarassignment.dto;
 
-import jakarta.validation.constraints.Max;
+
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 
-import java.time.LocalDateTime;
+
 @Getter
 public class PlanRequestDto {
     @Size(min = 1, max = 10, message = "최소 1글자, 최대 10글자까지 가능합니다.")

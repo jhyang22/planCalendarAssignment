@@ -58,7 +58,6 @@ public class PlanServiceImpl implements PlanService {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
 
-        //null이거나 비었으면 => orElseThrow()하겠다~
         Plan plan = planRepository.findPlanByIdOrElseThrow(planId);
 
         if (dto.getPassword().equals(plan.getPassword())) {
