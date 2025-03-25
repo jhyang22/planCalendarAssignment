@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PlanServiceImpl implements PlanService {
@@ -25,9 +26,7 @@ public class PlanServiceImpl implements PlanService {
     public PlanCreateResponseDto savePlan(PlanRequestDto dto) {
         Plan plan = new Plan(dto.getTitle(), dto.getContents(), dto.getUserId(), dto.getPassword());
 
-        Plan savedPlan = planRepository.savePlan(plan);
-
-        return new PlanCreateResponseDto(savedPlan);
+        return planRepository.savePlan(plan);
     }
 
     @Override
@@ -39,13 +38,13 @@ public class PlanServiceImpl implements PlanService {
     @Override
     public PlanResponseDto findPlanById(Long planId) {
 
-        Plan plan = planRepository.findPlanById(planId);
+        Optional<Plan> OptionalPlan = planRepository.findPlanById(planId);
 
-        if (plan == null) {
+        if (OptionalPlan == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
 
-        return new PlanResponseDto(plan);
+        return new PlanResponseDto(OptionalPlan.get());
     }
 
     @Override

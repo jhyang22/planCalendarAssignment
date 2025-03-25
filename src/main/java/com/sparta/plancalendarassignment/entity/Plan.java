@@ -11,7 +11,6 @@ import java.time.LocalDateTime;
 @Getter
 @AllArgsConstructor
 public class Plan {
-    @Setter
     private Long planId;
     private String userId;
     private String password;
@@ -27,6 +26,15 @@ public class Plan {
         this.password = password;
         this.createdAt = LocalDateTime.now();
         this.updatedAt = setupdatedAt();
+    }
+
+    public Plan(Long planId, String userId, String title, String contents, LocalDateTime updatedAt, LocalDateTime createdAt) {
+        this.planId = planId;
+        this.userId = userId;
+        this.title = title;
+        this.contents = contents;
+        this.updatedAt = updatedAt;
+        this.createdAt = createdAt;
     }
 
     public void updatePlan(PlanRequestDto dto) {
