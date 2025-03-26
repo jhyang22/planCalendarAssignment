@@ -1,7 +1,7 @@
 # **일정관리 과제 - Plan**
 
 ## ERD
-+ ERD의 경우 Lucidchart(www.lucidchart.com)을 활용하였습니다
++ ERD의 경우 Lucidchart(www.lucidchart.com) 을 활용하였습니다
 
 <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FdzHoUI%2FbtsMWmnkYKa%2Fulj1WBWw6fl633KI8kBfu1%2Fimg.jpg">
 
