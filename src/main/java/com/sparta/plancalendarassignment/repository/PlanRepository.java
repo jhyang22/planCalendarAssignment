@@ -10,7 +10,7 @@ import java.util.List;
 public interface PlanRepository {
     PlanCreateResponseDto savePlan(Plan plan);
 
-    List<PlanResponseDto> findAllPlans();
+    List<PlanResponseDto> findAllPlans(String userId, LocalDateTime updatedAt);
 
     int updatePlan(Long planId, String userId, String contents, LocalDateTime updatedAt);
 

@@ -45,7 +45,16 @@ public class JdbcTemplatePlanRepository implements PlanRepository{
     }
 
     @Override
-    public List<PlanResponseDto> findAllPlans() {
+    public List<PlanResponseDto> findAllPlans(String userId, LocalDateTime updatedAt) {
+
+        if(userId != null && updatedAt == null) {
+            return jdbcTemplate.query("SELECT * FROM plans WHERE user_id = ? ORDER BY updated_at desc", planRowMapper(), userId);
+        } else if(userId == null && updatedAt != null) {
+            return jdbcTemplate.query("SELECT * FROM plans WHERE updated_at = ? ORDER BY updated_at desc", planRowMapper(), updatedAt);
+        } else if(userId != null && updatedAt != null) {
+            return jdbcTemplate.query("SELECT * FROM plans WHERE user_id = ? AND updated_at = ? ORDER BY updated_at desc", planRowMapper(), userId, updatedAt);
+        }
+
         return jdbcTemplate.query("SELECT * FROM plans ORDER BY updated_at desc", planRowMapper());
     }
 

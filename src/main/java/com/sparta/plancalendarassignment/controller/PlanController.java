@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -31,9 +32,11 @@ public class PlanController {
 
     // 일정 전체 조회
     @GetMapping
-    public ResponseEntity<List<PlanResponseDto>> findAllPlans() {
-
-        return new ResponseEntity<>(planService.findAllPlans(), HttpStatus.OK);
+    public ResponseEntity<List<PlanResponseDto>> findAllPlans(
+            @RequestParam(required = false) String userId,
+            @RequestParam(required = false) LocalDateTime updatedAt
+    ) {
+        return new ResponseEntity<>(planService.findAllPlans(userId, updatedAt), HttpStatus.OK);
     }
 
     // 일정 일부 조회

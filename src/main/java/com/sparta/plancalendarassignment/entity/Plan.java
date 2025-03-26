@@ -1,7 +1,6 @@
 package com.sparta.plancalendarassignment.entity;
 
 
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 

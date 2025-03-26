@@ -31,9 +31,9 @@ public class PlanServiceImpl implements PlanService {
     }
 
     @Override
-    public List<PlanResponseDto> findAllPlans() {
+    public List<PlanResponseDto> findAllPlans(String userId, LocalDateTime updatedAt) {
 
-        return planRepository.findAllPlans();
+        return planRepository.findAllPlans(userId, updatedAt);
     }
 
     @Override
